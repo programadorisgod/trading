@@ -1,0 +1,9 @@
+(web scraping) -> tasa de interes bancara TIB https://www.banrep.gov.co/es/estadisticas/tasa-interbancaria-tib
+(data) -> tasa interes politica monetaria https://www.banrep.gov.co/es/estadisticas/tasas-interes-politica-monetaria✅
+(data) -> inflacion total y meta https://www.banrep.gov.co/es/estadisticas/tasas-interes-politica-monetaria
+(por revisar) -> sector externo, tasas de cambio y derivada https://www.banrep.gov.co/es/estadisticas/tasas-de-cambio-sector-externo-y-derivados
+(PIB web scraping) -> https://www.banrep.gov.co/es/estadisticas/producto-interno-bruto-pib ✅
+(deuda publica web scraping) ->https://www.banrep.gov.co/es/estadisticas/sector-publico-y-deuda-publica 
+(Recurosos entidaddes)https://www.datos.gov.co/en/Econom-a-y-Finanzas/DNP-RecursosEntidad/wc86-9j4a/data
+https://www.datos.gov.co/resource/wc86-9j4a.json
+
