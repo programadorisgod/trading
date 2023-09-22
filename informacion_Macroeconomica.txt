@@ -1,9 +1,22 @@
-(web scraping) -> tasa de interes bancara TIB https://www.banrep.gov.co/es/estadisticas/tasa-interbancaria-tib
+(web scraping) -> tasa de interes bancara TIB https://www.banrep.gov.co/es/estadisticas/tasa-interbancaria-tib✅
 (data) -> tasa interes politica monetaria https://www.banrep.gov.co/es/estadisticas/tasas-interes-politica-monetaria✅
 (data) -> inflacion total y meta https://www.banrep.gov.co/es/estadisticas/tasas-interes-politica-monetaria
 (por revisar) -> sector externo, tasas de cambio y derivada https://www.banrep.gov.co/es/estadisticas/tasas-de-cambio-sector-externo-y-derivados
-(PIB web scraping) -> https://www.banrep.gov.co/es/estadisticas/producto-interno-bruto-pib ✅
+(PIB web scraping) -> https://www.banrep.gov.co/es/estadisticas/producto-interno-bruto-pib 
 (deuda publica web scraping) ->https://www.banrep.gov.co/es/estadisticas/sector-publico-y-deuda-publica 
 (Recurosos entidaddes)https://www.datos.gov.co/en/Econom-a-y-Finanzas/DNP-RecursosEntidad/wc86-9j4a/data
 https://www.datos.gov.co/resource/wc86-9j4a.json
 
+-------------------------------------------------
+https://www.datos.gov.co/resource/32sa-8pi3.json?$query=SELECT%20%60valor%60%2C%20%60unidad%60%2C%20%60vigenciadesde%60%2C%20%60vigenciahasta%60%0AORDER%20BY%20%60unidad%60%20ASC%20NULL%20LAST%2C%20%60vigenciadesde%60%20DESC%20NULL%20FIRST
+
+https://www.banrep.gov.co/es/estadisticas/sector-publico-y-deuda-publica
+https://www.datos.gov.co/Ciencia-Tecnolog-a-e-Innovaci-n/Secci-n-de-Usos-del-Portal-de-Datos-Abiertos-del-E/4t9r-7v7i/data
+https://www.banrep.gov.co/es
+https://www.banrep.gov.co/es/estadisticas/producto-interno-bruto-pib
+https://totoro.banrep.gov.co/analytics/saw.dll?Go&lang=es&NQUser=publico&NQPassword=publico123&Path=%2fshared%2fSeries%20Estad%c3%adsticas_T%2f1.%20PIB%2f1.%202015%2f1.20%20PIB_Total%20y%20por%20habitante%20a%20precios%20constantes_IQY&Options=rdf
+https://www.banrep.gov.co/es/estadisticas/tasas-de-cambio-sector-externo-y-derivados
+
+
+#https://www.alphavantage.co/documentation/#intelligence peticiones api 
+#https://marketstack.com/
