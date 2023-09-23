@@ -17,7 +17,7 @@ def ipc_anual(filepath='./Datos/1.2.5.IPC_Serie_variaciones.xlsx'):
         inflation_annual = row['Inflación anual %']
         inflation_monthly = row['Inflación mensual %']
         current_year_inflation = row['Inflación año corrido %']
-        data[year_month] = {'indice': index, 'inflacion_anual': inflation_annual,'inflacion_mensual': inflation_monthly, 'inflacion_conrriente_anual': current_year_inflation}
+        data[year_month] = {'indice': index, 'inflacion_anual': inflation_annual,'inflacion_mensual': inflation_monthly, 'inflacion_corriente_anual': current_year_inflation}
     return data
 
 
