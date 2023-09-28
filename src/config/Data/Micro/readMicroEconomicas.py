@@ -1,5 +1,5 @@
 import pandas as pd
-
+import os 
 
 
 
@@ -41,6 +41,83 @@ def metales_preciosos(filepath='./Datos/metalespreciosos.xlsx'):
   
     return data
 
+def get_path_file():
+     source_dir = '/home/camilo/Descargas/'
+     files = os.listdir(source_dir)
+
+     for file in files:
+         if file.startswith('RVLocal_') and file.endswith('.csv'):
+                return source_dir + file
+         
+def normalize_data(data):
+    for key, value in data.items():
+        if value['ultimo_precio'] == '-':
+            value['ultimo_precio'] = '0'
+        if value['variacion_porcentual'] == '-':
+            value['variacion_porcentual'] = '0'
+        if value['volumenes'] == '-':
+            value['volumenes'] = '0'
+        if value['cantidad'] == '-':
+            value['cantidad'] = '0'
+        if value['variacion_absoluta'] == '-':
+            value['variacion_absoluta'] = '0'
+        if value['precio_apertura'] == '-':
+            value['precio_apertura'] = '0'
+        if value['precio_maximo'] == '-':
+            value['precio_maximo'] = '0'
+        if value['precio_minimo'] == '-':
+            value['precio_minimo'] = '0'
+        if value['precio_promedio'] == '-':
+            value['precio_promedio'] = '0'                           
+       
+    return data
+
+             
+
+def read_acciones():
+    file_path = get_path_file()
+    try:
+        df = pd.read_csv(file_path, delimiter=',', encoding='utf-8')
+        data = {}
+        for index, row in df.iterrows():
+          
+          nemotecnico = str (row['Nemotécnico'])
+          ultimo_precio = str (row['Último precio'])
+          variacion_porcentual = str (row['Variación porcentual'])
+          volumenes = str (row['Volúmenes'])
+          cantidad = str (row['Cantidad'])
+          variacion_absoluta = str (row['Variación absoluta'])
+          precio_apertura = str (row['Precio apertura'])
+          precio_maximo = str (row['Precio máximo'])
+          precio_minimo = str (row['Precio mínimo'])
+          precio_promedio = str (row['Precio promedio'])
+          emisor = str (row['Emisor'])
+          nombre = str (row['Nombre'] )
+          codigo =str ( row['Codigo'])
+
+          data[nemotecnico] = {
+            'ultimo_precio': ultimo_precio,
+            'variacion_porcentual': variacion_porcentual,
+            'volumenes': volumenes,
+            'cantidad': cantidad,
+            'variacion_absoluta': variacion_absoluta,
+            'precio_apertura': precio_apertura,
+            'precio_maximo': precio_maximo,
+            'precio_minimo': precio_minimo,
+            'precio_promedio': precio_promedio,
+            'emisor': emisor,
+            'nombre': nombre,
+            'codigo': codigo
+        }
+        
+        dataNormalized = normalize_data(data)
+       
+        print(dataNormalized)
+        return dataNormalized
+    except Exception as e:
+        print(f'Erorr: {e}')
+
+
 
 
 
@@ -48,6 +125,6 @@ def metales_preciosos(filepath='./Datos/metalespreciosos.xlsx'):
 
 
 if __name__ == '__main__':
-   print(ipc_anual())
+   print(read_acciones())
 
   

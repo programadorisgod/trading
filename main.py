@@ -3,7 +3,7 @@ from typing import Union
 
 from src.config.Data.Macro.readMacroEconomicas import read_xls_tip, read_xlsx_tib,read_xlsx_inflacion, pib_anual_precios_corrientes, pib_anual_precios_constantes, desempleo
 from src.config.Data.Macro.fech import get_dolar
-from src.config.Data.Micro.readMicroEconomicas import ipc_anual, metales_preciosos
+from src.config.Data.Micro.readMicroEconomicas import ipc_anual, metales_preciosos, read_acciones
 
 
 
@@ -51,3 +51,6 @@ def ipc():
 def metales():
     return metales_preciosos()
       
+@app.get("/acciones")
+def acciones():
+    return read_acciones()
