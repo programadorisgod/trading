@@ -53,7 +53,7 @@ def ipc():
 def metales():
     return metales_preciosos()
       
-@app.get("/acciones", response_model=Acciones)
+@app.get("/acciones")
 def acciones():
     return read_acciones()
 
