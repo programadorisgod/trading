@@ -2,3 +2,7 @@ fastapi
 uvicorn[standard]
 requests
 pandas
+numpy
+matplotlib
+statsmodels
+scikit-learn
