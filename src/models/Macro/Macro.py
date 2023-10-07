@@ -29,3 +29,5 @@ class Dolar(BaseModel):
     date: str
     dolar: float
     
+
+       

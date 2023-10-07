@@ -1,9 +1,13 @@
 from fastapi import FastAPI
 
-#from typing import Union
+
+from src.model_predict.Macro.tip import prediction_tip
+from src.model_predict.Macro.desempleo import prediction_desempleo
+from src.model_predict.Macro.inflation import prediction_inflation
+from src.model_predict.Macro.pib_constante import prediction_pib_const
 from src.model_predict.Macro.pib_correinte  import prediction_pib_current
 from src.models.Micro.Micro import Acciones, Ipc, Metales
-from src.models.Macro.Macro import Desempleo, Dolar, Inflation, Pib_constantes, Pib_corrientes, Tip
+from src.models.Macro.Macro import Desempleo, Dolar, Inflation, Pib_constantes, Pib_corrientes,  Tip
 from src.Data.Macro.readMacroEconomicas import read_xls_tip, read_xlsx_tib,read_xlsx_inflacion, pib_anual_precios_corrientes, pib_anual_precios_constantes, desempleo
 from src.Data.Macro.fech import get_dolar
 from src.Data.Micro.readMicroEconomicas import ipc_anual, metales_preciosos, read_acciones
@@ -59,7 +63,24 @@ def acciones():
     return read_acciones()
 
 
-#PREDICCIONES
-@app.get("/predicciones")
-def predicciones():
-        return prediction_pib_current()
+#VARIABLES MACROECONOMICAS PREDICCIONES
+@app.get("/predicciones/macroeconomicas/pib_corriente/{start_year}/{end_year}")
+def predicciones(start_year:int, end_year:int):
+        return prediction_pib_current(start_year, end_year)
+
+@app.get("/predicciones/macroeconomicas/pib_constante/{start_year}/{end_year}")
+def predicciones(start_year:int, end_year:int):
+        return prediction_pib_const(start_year, end_year)
+
+@app.get("/predicciones/macroeconomicas/inflacion/{months_prediction}")
+def predicciones(months_prediction:int):
+        return prediction_inflation(months_prediction)
+
+
+@app.get("/predicciones/macroeconomicas/desempleo/{months_prediction}")
+def predicciones(months_prediction:int):
+        return prediction_desempleo(months_prediction)
+
+@app.get("/predicciones/macroeconomicas/tip/{months_prediction}")
+def predicciones(months_prediction:int):
+        return prediction_tip(months_prediction)
