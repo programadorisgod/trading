@@ -1,6 +1,7 @@
 from fastapi import FastAPI
-#from typing import Union
 
+#from typing import Union
+from src.model_predict.Macro.pib_correinte  import prediction_pib_current
 from src.models.Micro.Micro import Acciones, Ipc, Metales
 from src.models.Macro.Macro import Desempleo, Dolar, Inflation, Pib_constantes, Pib_corrientes, Tip
 from src.Data.Macro.readMacroEconomicas import read_xls_tip, read_xlsx_tib,read_xlsx_inflacion, pib_anual_precios_corrientes, pib_anual_precios_constantes, desempleo
@@ -58,3 +59,7 @@ def acciones():
     return read_acciones()
 
 
+#PREDICCIONES
+@app.get("/predicciones")
+def predicciones():
+        return prediction_pib_current()
