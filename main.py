@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 
-
+from src.model_predict.Micro.metales import prediction_metales
+from src.model_predict.Micro.ipc import prediccion_ipc
+from src.model_predict.Macro.dolar import prediction_dolar
 from src.model_predict.Macro.tip import prediction_tip
 from src.model_predict.Macro.desempleo import prediction_desempleo
 from src.model_predict.Macro.inflation import prediction_inflation
@@ -42,7 +44,7 @@ def pib_constantes():
 def desempleoGet():
     return desempleo()
 
-@app.get("/dolar", response_model=Dolar)
+@app.get("/dolar")
 def dolar():
     return get_dolar()
 
@@ -54,7 +56,7 @@ def dolar():
 def ipc():
     return ipc_anual()
 
-@app.get("/metales",response_model= Metales)
+@app.get("/metales")
 def metales():
     return metales_preciosos()
       
@@ -84,3 +86,18 @@ def predicciones(months_prediction:int):
 @app.get("/predicciones/macroeconomicas/tip/{months_prediction}")
 def predicciones(months_prediction:int):
         return prediction_tip(months_prediction)
+
+@app.get("/predicciones/macroeconomicas/dolar/{day}")
+def predicciones(day:int):
+        return prediction_dolar(day=day)
+
+
+#VARIABLES MICROECONOMICAS PREDICCIONES
+
+@app.get("/predicciones/microeconomicas/ipc/{months_prediction}")
+def predicciones(months_prediction:int):
+        return prediccion_ipc(months_prediction)
+
+@app.get("/predicciones/microeconomicas/metales/{months_prediction}")
+def predicciones(months_prediction:int):
+        return prediction_metales(months_prediction)
