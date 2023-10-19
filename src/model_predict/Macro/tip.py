@@ -33,7 +33,6 @@ def prediction_tip(months_prediction:int):
     #hacer prediciones
 
     predictions:float = model_fit.forecast(steps=months_for_prediction)
-    print(predictions)
     data = []
     last_date = df_tip.index[-1]
 

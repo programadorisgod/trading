@@ -34,7 +34,6 @@ def read_xlsx_tib(filepath='./Datos/TIB.xlsx'):
             mount = row['Monto']
 
         data[year_mounth_day] = {'TIB': tib, 'Monto': mount}
-    print(data)
     
     return data
 

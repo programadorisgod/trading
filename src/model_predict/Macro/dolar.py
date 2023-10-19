@@ -32,7 +32,6 @@ def prediction_dolar(day:int):
     predicitons = model_fit.forecast(steps= days_prediction)
 
     data = []
-    print(df_dolar.index[-1])
     
     for dolar in data_dolar:
          data.append(dolar)

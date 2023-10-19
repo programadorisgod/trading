@@ -22,7 +22,6 @@ def prediction_pib_const(start_year:int, end_year:int):
     #Convertir la columna 'year' en el indice del dataFrame
     df_pib.set_index('year', inplace=True)
 
-    print(df_pib)
     
     #Visualizar los datos
     '''
@@ -40,16 +39,13 @@ def prediction_pib_const(start_year:int, end_year:int):
     model = ARIMA(df_pib['pib'], order=order)
     model_fit = model.fit()
 
-    #print(model_fit.summary())
 
     start_year_prediction = start_year
     end_year_prediction = end_year
 
     year_prediction = range(start_year_prediction, end_year_prediction+1)
-    print(year_prediction)
     #hacer prediciones
     predictions:float = model_fit.forecast(steps=len(year_prediction))
-    print(predictions)
     #Calcular  el error cuadratico medie (MSE)
     mse = mean_squared_error(df_pib['pib'][-len(year_prediction):], predictions)
 

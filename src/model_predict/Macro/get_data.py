@@ -33,7 +33,6 @@ def get_pib_const():
 
         for pib in data_pib:
             if int(pib['year']) < 2020:
-                print(pib['year'])
                 continue
         
             data_pib_const.append({
@@ -123,7 +122,6 @@ def get_tip():
                 'tip': tip['tip']
             })
 
-        print(data)
 
         return data
     except Exception as error:

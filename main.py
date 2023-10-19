@@ -1,4 +1,9 @@
 from fastapi import FastAPI
+import threading
+import os
+
+
+
 
 from src.model_predict.Micro.metales import prediction_metales
 from src.model_predict.Micro.ipc import prediccion_ipc
@@ -8,12 +13,9 @@ from src.model_predict.Macro.desempleo import prediction_desempleo
 from src.model_predict.Macro.inflation import prediction_inflation
 from src.model_predict.Macro.pib_constante import prediction_pib_const
 from src.model_predict.Macro.pib_correinte  import prediction_pib_current
-from src.models.Micro.Micro import Acciones, Ipc, Metales
-from src.models.Macro.Macro import Desempleo, Dolar, Inflation, Pib_constantes, Pib_corrientes,  Tip
 from src.Data.Macro.readMacroEconomicas import read_xls_tip, read_xlsx_tib,read_xlsx_inflacion, pib_anual_precios_corrientes, pib_anual_precios_constantes, desempleo
-from src.Data.Macro.fech import get_dolar
-from src.Data.Micro.readMicroEconomicas import ipc_anual, metales_preciosos, read_acciones
-
+from src.Data.Micro.readMicroEconomicas import ipc_anual, metales_preciosos
+from src.Data.Macro.worker_macro import worker_fetch, get_data_dolar
 
 
 app = FastAPI()
@@ -23,36 +25,42 @@ app = FastAPI()
 def index():
     return {"message": "Monitor Financiero API"}
 
-@app.get("/tip", response_model=Tip)
+@app.get("/tip")
 def tip():
     return read_xls_tip()
 
 
-@app.get("/inflacion", response_model=Inflation)
+@app.get("/inflacion")
 def inflacion():
     return read_xlsx_inflacion()
 
-@app.get("/pib_corrientes", response_model=Pib_corrientes)
+@app.get("/pib_corrientes")
 def pib_corrientes():
     return pib_anual_precios_corrientes()
 
-@app.get("/pib_constantes", response_model=Pib_constantes)
+@app.get("/pib_constantes")
 def pib_constantes():
     return pib_anual_precios_constantes()
 
-@app.get("/desempleo", response_model=Desempleo)
+@app.get("/desempleo")
 def desempleoGet():
     return desempleo()
 
 @app.get("/dolar")
 def dolar():
-    return get_dolar()
+    data_dolar = get_data_dolar()
+    if data_dolar:
+        return data_dolar
+    else: 
+          return {"message": "No data aviable"}
+    
+     
 
 
 
  #VARIABLES MICROECONOMICAS   
    
-@app.get("/ipc", response_model=Ipc)
+@app.get("/ipc")
 def ipc():
     return ipc_anual()
 
@@ -62,7 +70,7 @@ def metales():
       
 @app.get("/acciones")
 def acciones():
-    return read_acciones()
+    return 'acciones'
 
 
 #VARIABLES MACROECONOMICAS PREDICCIONES
@@ -101,3 +109,12 @@ def predicciones(months_prediction:int):
 @app.get("/predicciones/microeconomicas/metales/{months_prediction}")
 def predicciones(months_prediction:int):
         return prediction_metales(months_prediction)
+
+
+print("procces id main:", os.getpid())
+print("procces parent id main:", os.getppid())
+print("______________________________")
+worker_thread  = threading.Thread(target=worker_fetch)
+worker_thread.daemon = True
+worker_thread.start()
+

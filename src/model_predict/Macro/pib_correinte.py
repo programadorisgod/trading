@@ -40,7 +40,6 @@ def prediction_pib_current (start_year:int, end_year:int):
     model = ARIMA(df_pib['pib'], order=order)
     model_fit = model.fit()
 
-    #print(model_fit.summary())
 
     start_year_prediction = start_year
     end_year_prediction = end_year
@@ -96,7 +95,6 @@ def prediction_pib_current (start_year:int, end_year:int):
 
     data_sort = sorted(data, key=lambda x: int(x['year']))
     
-    print(data_sort)
     return data_sort
 
 if __name__ == '__main__':
