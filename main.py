@@ -68,9 +68,6 @@ def ipc():
 def metales():
     return metales_preciosos()
       
-@app.get("/acciones")
-def acciones():
-    return 'acciones'
 
 
 #VARIABLES MACROECONOMICAS PREDICCIONES
@@ -118,3 +115,6 @@ worker_thread  = threading.Thread(target=worker_fetch)
 worker_thread.daemon = True
 worker_thread.start()
 
+if __name__ == "__main__":
+  import uvicorn
+  uvicorn.run("server.api:app", host="0.0.0.0", port=8000, reload=True)

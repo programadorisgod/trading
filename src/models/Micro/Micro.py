@@ -14,22 +14,6 @@ class Metales (BaseModel):
     platino: dict
 
 
-#ahora viene la parte de acciones y tiene el formato de 
-
-
-class Acciones (BaseModel):
-    ultimo_precio: float
-    variacion_porcentual: float
-    volumenes: float
-    cantidad: float
-    variacion_absoluta: float
-    precio_apertura: float
-    precio_maximo: float
-    precio_minimo: float
-    precio_promedio: float
-    emisor: float
-    nombre: str
-    codigo: str
 
 
 
