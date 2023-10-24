@@ -1,6 +1,8 @@
 import threading
 import time
 import os
+
+
 from src.Data.Macro.fetch import get_dolar
 
 data_dolar= None
