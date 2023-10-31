@@ -103,9 +103,9 @@ def predicciones(day:int):
 def predicciones(months_prediction:int):
         return prediccion_ipc(months_prediction)
 
-@app.get("/predicciones/microeconomicas/metales/{months_prediction}")
-def predicciones(months_prediction:int):
-        return prediction_metales(months_prediction)
+@app.get("/predicciones/microeconomicas/metales/{prediction_days}")
+def predicciones(prediction_days:int):
+        return prediction_metales(prediction_days)
 
 
 print("procces id main:", os.getpid())

@@ -2,7 +2,7 @@ import requests
 
 def get_data():
     try:
-        url = 'http://localhost:3000/API/Micro/ipc/Colombia'
+        url = 'http://localhost:4000/API/Micro/ipc/Colombia'
         response = requests.get(url)
         data = response.json()
         return data
@@ -12,7 +12,7 @@ def get_data():
 
 def get_metales():
     try:
-        url = 'http://localhost:3000/API/Micro/metales/Colombia'
+        url = 'http://localhost:4000/API/Micro/metales/Colombia'
         response = requests.get(url)
         data = response.json()
         return data

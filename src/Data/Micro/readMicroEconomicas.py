@@ -32,17 +32,19 @@ def metales_preciosos(filepath='./Datos/metalespreciosos.xlsx'):
     data ={}
     start_date = datetime(2023, 1, 1)
     current_date =start_date
-    
+
     for idx, row in df.iterrows():
+
         date=current_date.strftime('%Y-%m-%d')
         gold={'compra': row['Compra Oro'], 'venta': row['Venta Oro']}
         silver={'compra': row['Compra Plata'], 'venta': row['Venta Plata']}
         platinum={'compra': row['Compra Platino'], 'venta': row['Venta Platino']}
         data[date]={'oro':gold, 'plata':silver,'platino': platinum}
-        print(current_date)
         current_date += timedelta(days=1)
 
-    return data
+     
+    data_sorted = sorted(data.items(), key= lambda x: x[0])
+    return data_sorted
 
 
 
