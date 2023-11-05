@@ -18,7 +18,6 @@ def prediccion_ipc(months):
 
     #Ordenamos los valores por año
     df_ipc = df_ipc.sort_values(by=['date'])
-    print(df_ipc)
     #Ajustar el modelo ARIMA
     model = ARIMA(df_ipc['indice'], order=(1, 1, 1))
     model_fit = model.fit()

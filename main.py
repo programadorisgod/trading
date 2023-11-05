@@ -3,8 +3,7 @@ import threading
 import os
 
 
-
-
+from src.model_predict.Micro.acciones import prediccion_action
 from src.model_predict.Micro.metales import prediction_metales
 from src.model_predict.Micro.ipc import prediccion_ipc
 from src.model_predict.Macro.dolar import prediction_dolar
@@ -107,6 +106,9 @@ def predicciones(months_prediction:int):
 def predicciones(prediction_days:int):
         return prediction_metales(prediction_days)
 
+@app.get("/predicciones/microeconomicas/acciones/{minuts}/{name}")
+def predicciones(minuts:str, name:str):
+        return prediccion_action(minuts, name)
 
 print("procces id main:", os.getpid())
 print("procces parent id main:", os.getppid())
