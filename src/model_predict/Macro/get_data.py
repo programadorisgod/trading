@@ -2,7 +2,7 @@ import requests
 
 def get_pib_current():
     try: 
-        url = 'http://localhost:3000/API/Macro/PibCorriente/Colombia'
+        url = 'https://api-node-motor-finaciero-production.up.railway.app/API/Macro/PibCorriente/Colombia'
         response = requests.get(url)
         data = response.json()
         data_pib = data['pibCurrentData']
@@ -24,7 +24,7 @@ def get_pib_current():
 
 def get_pib_const():
     try:
-        url = 'http://localhost:3000/API/Macro/PibConstante/Colombia'
+        url = 'https://api-node-motor-finaciero-production.up.railway.app/API/Macro/PibConstante/Colombia'
         response = requests.get(url)
         data = response.json()    
         
@@ -48,7 +48,7 @@ def get_pib_const():
 
 def get_inflation():
     try:
-        url = 'http://localhost:3000/API/Macro/Inflacion/Colombia'
+        url = 'https://api-node-motor-finaciero-production.up.railway.app/API/Macro/Inflacion/Colombia'
         
         response =  requests.get(url)
 
@@ -81,7 +81,7 @@ def get_inflation():
 
 def get_unemployment():
     try:
-        url = 'http://localhost:3000/API/Macro/Desempleo/Colombia'
+        url = 'https://api-node-motor-finaciero-production.up.railway.app/API/Macro/Desempleo/Colombia'
         response = requests.get(url)
         data = response.json()
         data_unemployment = data['unemploymentData']
@@ -106,7 +106,7 @@ def get_unemployment():
 
 def get_tip():
     try:
-        url = 'http://localhost:3000/API/Macro/Tip/Colombia'
+        url = 'https://api-node-motor-finaciero-production.up.railway.app/API/Macro/Tip/Colombia'
         response = requests.get(url)
         data = response.json() 
         data_tip = data['tipData']
@@ -131,7 +131,7 @@ def get_tip():
 
 def get_dolar():
     try: 
-        url = 'http://localhost:3000/API/Macro/Dolar/Colombia'
+        url = 'https://api-node-motor-finaciero-production.up.railway.app/API/Macro/Dolar/Colombia'
         response = requests.get(url)
         data = response.json()
         data_dolar = data['dolarData']

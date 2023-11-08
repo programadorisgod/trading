@@ -10,7 +10,6 @@ def prediction_dolar(day:int):
         return "Error"
     #Obtener datos de PIB, inflacion, desempleo y dolar
     data_dolar = get_dolar()
-
    #Crear un dataframe
     df_dolar = pd.DataFrame(data_dolar)
   

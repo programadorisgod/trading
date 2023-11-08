@@ -2,7 +2,7 @@ import requests
 
 def get_data():
     try:
-        url = 'http://localhost:4000/API/Micro/ipc/Colombia'
+        url = 'https://api-node-motor-finaciero-production.up.railway.app/API/Micro/ipc/Colombia'
         response = requests.get(url)
         data = response.json()
         return data
@@ -12,7 +12,7 @@ def get_data():
 
 def get_metales():
     try:
-        url = 'http://localhost:4000/API/Micro/metales/Colombia'
+        url = 'https://api-node-motor-finaciero-production.up.railway.app/API/Micro/metales/Colombia'
         response = requests.get(url)
         data = response.json()
         return data
@@ -22,7 +22,7 @@ def get_metales():
 
 def get_actions(name):
     try: 
-        url = f'http://localhost:4000/API/Micro/acciones/{name}'
+        url = f'https://api-node-motor-finaciero-production.up.railway.app/API/Micro/acciones/{name}'
         response = requests.get(url)
         data = response.json()
         return data
