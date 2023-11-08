@@ -134,8 +134,7 @@ def get_dolar():
         url = 'https://api-node-motor-finaciero-production.up.railway.app/API/Macro/Dolar/Colombia'
         response = requests.get(url)
         data = response.json()
-        data_dolar = data['dolarData']
-        
+        data_dolar = data['dataSort']
         dolar_data= []
 
         for dolar in data_dolar:
@@ -144,6 +143,7 @@ def get_dolar():
                 'dolar': dolar['dolar']
             })
 
+        print(dolar_data)
         
         return dolar_data
     except Exception as error:

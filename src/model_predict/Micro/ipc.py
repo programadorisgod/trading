@@ -28,11 +28,7 @@ def prediccion_ipc(months):
     
     predictions:float = model_fit.forecast(steps=months_for_prediction)
     data= []
-    for ipc in data_ipc:
-        data.append({
-            'date': ipc['date'],
-            'indice': ipc['indice']
-        })
+  
      
     for year, ipc in predictions.items():
         data.append({

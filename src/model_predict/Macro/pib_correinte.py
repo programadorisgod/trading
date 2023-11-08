@@ -80,12 +80,7 @@ def prediction_pib_current (start_year:int, end_year:int):
 
     data=[]
 
-    
-    for pib in pib_current_data:
-        data.append({
-            'year': pib['year'],
-            'pib': pib['pib']
-        })
+
 
     for year, prediction in zip(year_prediction, list(predictions)):
         data.append({

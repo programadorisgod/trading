@@ -54,7 +54,6 @@ def prediction_pib_const(start_year:int, end_year:int):
 
     #Visualizar las predicciones
     '''
-
     plt.figure(figsize=(12, 6))
     plt.plot(df_pib['pib'], label='PIB constante')
     plt.plot(year_prediction, predictions, label='Predicciones')
@@ -66,12 +65,7 @@ def prediction_pib_const(start_year:int, end_year:int):
     '''
     data = []
 
-    for pib in pib_consta_data:
-        data.append({
-            'year': pib['year'],
-            'pib': pib['pib']
-        })
-
+   
     for year, prediction in zip(year_prediction, list(predictions)):
         data.append({
             'year': year.__str__(),

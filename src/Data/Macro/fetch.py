@@ -8,8 +8,12 @@ def get_dolar():
         item['vigenciadesde'] = item['vigenciadesde'][:10]
         if item['vigenciadesde'] < '2022-01-01':
             break
-        item['vigenciahasta'] = item['vigenciahasta'][:10]
-        price_dolar[item['vigenciadesde']] = item['valor']
+        
+        price_dolar[item['vigenciadesde']] = {
+            'valor': item['valor'],
+            'vigenciahasta': item['vigenciahasta'],
+            'vigeniadesde': item['vigenciadesde']
+        }
     return price_dolar
 
 

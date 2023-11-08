@@ -36,10 +36,6 @@ def prediction_tip(months_prediction:int):
     data = []
     last_date = df_tip.index[-1]
 
-    for tib in data_tip:
-        data.append(tib)
-
-
     for i in range(1, months_for_prediction+1):
         next_date = last_date + pd.DateOffset(months=i)
         data.append({

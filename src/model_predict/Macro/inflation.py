@@ -21,18 +21,7 @@ def prediction_inflation(months_prediction:int):
     #Ordenamos los valores por año
 
     df_inflation = df_inflation.sort_values(by=['year_month'])
-    
-    #Visualizar los datos
-    '''
-    plt.figure(figsize=(12, 6))
-    plt.plot(df_inflation.index, df_inflation['inflation'], label='Inflacion')
-    plt.xlabel('Año')
-    plt.ylabel('Inflacion en %')
-    plt.title('Inflacion Colombia')
-    plt.legend()
-    plt.show()
-    '''
- 
+
 
     #Ajustar el modelo ARIMA
     model = ARIMA(df_inflation['inflation'], order=(1, 1, 1)) 
@@ -51,25 +40,10 @@ def prediction_inflation(months_prediction:int):
   
     prediction_dates = [last_date + pd.DateOffset(months=1) for i in range(1, months_for_prediction+1)]
     
-    #Visualizar las predicciones
-    '''
 
-    plt.figure(figsize=(12, 6))
-    plt.plot(df_inflation.index, df_inflation['inflation'], label='Inflacion')
-    plt.plot(prediction_dates, predictions, label='Predicciones')
-    plt.xlabel('Año-Mes')
-    plt.ylabel('Inflacion en %')
-    plt.title('Inflacion Colombia - Predicciones')
-    plt.legend()
-    plt.grid(True)
-    plt.show()
-    '''
+    
     data = []
-    for inflation in inflation_data:
-        data.append({
-            'year_month': inflation['year_month'],
-            'inflation': inflation['inflation']
-        })
+
 
     for year, inflation in predictions.items():
         data.append({
