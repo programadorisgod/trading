@@ -4,6 +4,8 @@ from statsmodels.tsa.arima.model import ARIMA
 from sklearn.metrics import mean_squared_error
 import numpy as np
 import datetime
+import pytz
+
 from src.model_predict.Macro.get_data import get_dolar,get_inflation,get_pib_const,get_unemployment
 
 def prediction_dolar(day:int):
@@ -39,9 +41,23 @@ def prediction_dolar(day:int):
     data = []
     
 
+    # Obtén la hora y fecha actual en Miami
+    current_datetime_miami = datetime.datetime.now(pytz.timezone('America/New_York'))
+
+    # Establece la zona horaria de Colombia
+    colombia_tz = pytz.timezone('America/Bogota')
+
+    # Convierte el datetime de Miami a la zona horaria de Colombia
+    current_datetime_colombia = current_datetime_miami.astimezone(colombia_tz)
+
+    # Extrae la fecha de Colombia
+    current_date_colombia = current_datetime_colombia.date()
+
+    print("Fecha en Miami:", current_datetime_miami)
+    print("Fecha en Colombia:", current_date_colombia)
 
     for i in range(1, days_prediction +1):
-        next_date = current_date + pd.DateOffset(days=i) 
+        next_date = current_date_colombia + pd.DateOffset(days=i) 
   
         data.append({
             'year_month_day': next_date.strftime('%Y-%m-%d'),
