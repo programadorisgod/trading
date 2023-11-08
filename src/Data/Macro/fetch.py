@@ -12,7 +12,7 @@ def get_dolar():
         price_dolar[item['vigenciadesde']] = {
             'valor': item['valor'],
             'vigenciahasta': item['vigenciahasta'],
-            'vigeniadesde': item['vigenciadesde']
+            'vigenciadesde': item['vigenciadesde']
         }
     return price_dolar
 
