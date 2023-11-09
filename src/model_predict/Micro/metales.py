@@ -14,7 +14,6 @@ def prediction_metales(prediction_days:int):
 
     #Convertir la columna 'year_month_day' en el indice del dataFrame
     df_tip.set_index('date', inplace=True)
-    print(df_tip)
 
     #Ordenamos los valores por año
     df_tip = df_tip.sort_values(by=['date'])
@@ -35,23 +34,33 @@ def prediction_metales(prediction_days:int):
 
 
     metals = ['gold', 'silver', 'platinum']
-    price_types = ["purchase_price", "sales_price"]
+    metals_spanish = ['oro', 'plata', 'platino']
+    last_date = df_tip.index[-1]
 
-    merged_data = {}
-    for metal in metals:
-        merged_data[metal] = {}
+    date_range = pd.date_range(start=last_date, periods=prediction_days)
 
-        for price_type in price_types:
-            predictions = apply_arima(metal, price_type)
-            last_date = df_tip.index[-1]
-            date_range = pd.date_range(start=last_date, periods=prediction_days)
+    merged_data = []
 
-            predicted_dict = {str(date.date()) : value for date, value in zip(date_range, predictions) }
-            merged_data[metal][price_type] = predicted_dict
+    for  date in date_range:
+        date_data = []
+      
+        for metal, metal_spanish in zip(metals, metals_spanish):
+
+            metal_data = {metal_spanish: {}}
+          
+            predictions = apply_arima(metal, 'purchase_price')
+            predicted_purchase = predictions[date_range.get_loc(date)]
+            metal_data[metal_spanish]['compra'] = predicted_purchase
+
+
+            predictions = apply_arima(metal, 'sales_price')
+            predicted_sales = predictions[date_range.get_loc(date)]
+            metal_data[metal_spanish]['venta'] = predicted_sales
+
+            
+            date_data.append(metal_data)
+        merged_data.append([str(date.date()),date_data])    
 
     return merged_data
-    
- 
-
 if __name__ == '__main__':
     prediction_metales(12)
