@@ -5,21 +5,30 @@ from src.model_predict.Micro.get_data import get_actions
 
 def prediccion_action(minuts, name):
     data_action = get_actions(name)
-
+    
+    #Creación del dataframe
     df= pd.DataFrame(data_action)
 
-    df['last'] = df['data'].apply(lambda x: float(x['data']['last'].replace(',', '').replace('.', '', 1)))
-    
-    df['hour'] = pd.to_datetime(df['data'].apply(lambda x: x['data']['hour'] + ' 00:00'), format='%d/%m %H:%M')
+    #Acomodar el dataframe
+    df['last'] = df['data'].apply(lambda x: float(x['data']['last'].replace('.', '').replace(',', '.')))
 
+    current_year = pd.Timestamp.now().year
+    df['hour'] = pd.to_datetime(df['data'].apply(lambda x: f"{current_year}/{x['data']['hour']} 00:00"), format='%Y/%d/%m %H:%M')
+    ##df['hour'] = pd.to_datetime(df['data'].apply(lambda x: x['data']['hour'] + ' 00:00'), format='%d/%m %H:%M')
 
     df = df.sort_values(by='hour')
     df = df.set_index('hour')
-    model = ARIMA(df['last'], order=(1, 1, 1))
+
+    
+    #Entrenamiento del modelo
+    model = ARIMA(df['last'], order=(0, 0, 0))
+
     model_fit = model.fit()
 
     time = minuts.split('-')[2]
+
     minuts = minuts.replace('-', '/')
+
     print(minuts, 'minuts')
 
     hour_pred = pd.to_datetime(minuts, format='%d/%m/%H:%M')
@@ -28,7 +37,9 @@ def prediccion_action(minuts, name):
 
     hour_pred_timestamp = hour_pred.timestamp()
     print(hour_pred_timestamp, 'hour_pred_timestamp')
+    #Predicción
     price_pred = model_fit.forecast(steps=1)
+
     print(price_pred, 'price_pred')
 
     print(f'Predicción del precio a las {hour_pred_timestamp}: {price_pred}')

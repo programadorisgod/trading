@@ -23,7 +23,7 @@ def worker_fetch():
         new_data_dolar = get_dolar()
         set_data_dolar(new_data_dolar)
        
-        time.sleep(30 * 60)
+        time.sleep(5 * 60)
         
 
 
