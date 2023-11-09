@@ -25,7 +25,6 @@ def get_actions(name):
         url = f'https://api-node-motor-finaciero-production.up.railway.app/API/Micro/acciones/{name}'
         response = requests.get(url)
         data = response.json()
-        print(data)
         return data
     except Exception as e:
         print(e)
