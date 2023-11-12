@@ -25,11 +25,11 @@ def prediction_tip(months_prediction:int):
 
 
     #Ajusatar el modelo ARIMA
-    model = ARIMA(df_tip['tip'], order=(1, 1, 1))
+    model = ARIMA(df_tip['tip'], order=(1, 2, 1))
     model_fit = model.fit()
 
-    months_for_prediction = months_prediction
-
+    months_for_prediction = months_prediction  * 30
+    last_index_prediction = df_tip.index.get_loc(df_tip.index[-1])
     #hacer prediciones
 
     predictions:float = model_fit.forecast(steps=months_for_prediction)
@@ -37,10 +37,10 @@ def prediction_tip(months_prediction:int):
     last_date = df_tip.index[-1]
 
     for i in range(1, months_for_prediction+1):
-        next_date = last_date + pd.DateOffset(months=i)
+        next_date = last_date + pd.DateOffset(days=i)
         data.append({
             'year_month_day': next_date.strftime('%Y-%m-%d'),
-            'tip': predictions[i+989-1]
+            'tip': round(predictions[i+last_index_prediction], 2)
         })
 
     data = sorted(data, key=lambda x: x['year_month_day'])
@@ -48,6 +48,3 @@ def prediction_tip(months_prediction:int):
     return data
     
 
-    
-if __name__ == '__main__':
-    prediction_tip(12)

@@ -21,7 +21,7 @@ def prediccion_ipc(months):
     #Ajustar el modelo ARIMA
     model = ARIMA(df_ipc['indice'], order=(1, 1, 1))
     model_fit = model.fit()
-
+   
     months_for_prediction = months
 
     #hacer prediciones

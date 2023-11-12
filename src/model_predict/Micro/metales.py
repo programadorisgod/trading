@@ -62,5 +62,3 @@ def prediction_metales(prediction_days:int):
         merged_data.append([str(date.date()),date_data])    
 
     return merged_data
-if __name__ == '__main__':
-    prediction_metales(12)

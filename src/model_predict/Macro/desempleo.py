@@ -47,12 +47,7 @@ def prediction_desempleo(months_prediction:int):
 
     data = []
 
-    for unemployment in  desempleo:
-        data.append({
-            'year_month': unemployment['year_month'],
-            'unemployment': unemployment['unemployment']
-        })
-    
+
     for year, unemployment in predictions.items():
         data.append({
             'year_month': year.strftime('%Y-%m'),

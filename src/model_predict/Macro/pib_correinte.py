@@ -83,9 +83,11 @@ def prediction_pib_current (start_year:int, end_year:int):
 
 
     for year, prediction in zip(year_prediction, list(predictions)):
+        pib =str(prediction)
+        pibformat =  pib[:3] + '.' + pib[3:6]
         data.append({
             'year': year.__str__(),
-            'pib': round(prediction, 2).__str__()
+            'pib': pibformat.__str__()
         })
 
     data_sort = sorted(data, key=lambda x: int(x['year']))
