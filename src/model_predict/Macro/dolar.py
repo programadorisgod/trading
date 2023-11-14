@@ -5,7 +5,6 @@ from sklearn.metrics import mean_squared_error
 import numpy as np
 import datetime
 import pytz
-import locale   
 
 from src.model_predict.Macro.get_data import get_dolar,get_inflation,get_pib_const,get_unemployment
 
@@ -50,7 +49,7 @@ def prediction_dolar(day:int):
     # Extrae la fecha de Colombia
     current_date_colombia = current_datetime_colombia.date()
 
-    locale.setlocale(locale.LC_ALL, 'es_CO.UTF-8')
+
 
     for i in range(1, days_prediction +1):
         next_date = current_date_colombia + pd.DateOffset(days=i) 
