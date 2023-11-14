@@ -143,7 +143,6 @@ def get_dolar():
                 'dolar': dolar['dolar']
             })
 
-        print(dolar_data)
         
         return dolar_data
     except Exception as error:

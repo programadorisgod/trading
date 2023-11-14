@@ -21,7 +21,7 @@ def prediccion_action(minuts, name):
 
     
     #Entrenamiento del modelo
-    model = ARIMA(df['last'], order=(0, 0, 0))
+    model = ARIMA(df['last'], order=(1, 1, 1))
 
     model_fit = model.fit()
 
@@ -29,23 +29,19 @@ def prediccion_action(minuts, name):
 
     minuts = minuts.replace('-', '/')
 
-    print(minuts, 'minuts')
 
     hour_pred = pd.to_datetime(minuts, format='%d/%m/%H:%M')
-    print(hour_pred, 'hour_pred')
 
 
     hour_pred_timestamp = hour_pred.timestamp()
-    print(hour_pred_timestamp, 'hour_pred_timestamp')
+
     #Predicción
     price_pred = model_fit.forecast(steps=1)
 
-    print(price_pred, 'price_pred')
 
-    print(f'Predicción del precio a las {hour_pred_timestamp}: {price_pred}')
-
+    value = f'{price_pred.values[0]:,.3f}'.replace(',', '')
     data = {
         'time':time,
-        'value':price_pred.values[0]
+        'value':float(value)
     }
     return data
