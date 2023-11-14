@@ -54,11 +54,10 @@ def prediction_dolar(day:int):
 
     for i in range(1, days_prediction +1):
         next_date = current_date_colombia + pd.DateOffset(days=i) 
-        dolar_value = predicitons[i+lats_index_prediction]
-        format_number =locale.currency(dolar_value, grouping=True, symbol=None)
+        dolar_value = round (predicitons[i+lats_index_prediction],2)
         data.append({
             'year_month_day': next_date.strftime('%Y-%m-%d'),
-            'dolar': float(format_number.replace('.', '').replace(',', '.'))
+            'dolar': dolar_value
         })
 
 
