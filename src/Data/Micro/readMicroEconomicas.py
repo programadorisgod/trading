@@ -42,7 +42,6 @@ def metales_preciosos(filepath='./Datos/metalespreciosos.xlsx'):
         data[date]={'oro':gold, 'plata':silver,'platino': platinum}
         current_date += timedelta(days=1)
 
-     
     data_sorted = sorted(data.items(), key= lambda x: x[0])
     return data_sorted
 

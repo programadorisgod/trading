@@ -39,8 +39,9 @@ def read_xlsx_tib(filepath='./Datos/TIB.xlsx'):
 
 
 
-def read_xls_tip(filepath='./Datos/1.2.TIP_Serie histórica diaria IQY.xlsx'):
+def read_xls_tip(filepath='./Datos/tip.xlsx'):
     df = pd.read_excel(filepath, sheet_name='Sheet1',index_col='Fecha (dd/mm/aaaa)')
+    print(df)
     data = {}
     for idx, row in df.iterrows():
         year_mounth_day = idx.strftime('%Y-%m-%d')
@@ -48,7 +49,7 @@ def read_xls_tip(filepath='./Datos/1.2.TIP_Serie histórica diaria IQY.xlsx'):
             break
         tip = row['Tasa de intervención de política monetaria (%)']
         data[year_mounth_day] = tip
-    
+    print(data)
     return data
 
 
