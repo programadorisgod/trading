@@ -51,10 +51,10 @@ def prediction_pib_current (start_year:int, end_year:int):
 
     #Calcular  el error cuadratico medie (MSE)
 
-    mse = mean_squared_error(df_pib['pib'][-len(year_prediction):], predictions)
+   # mse = mean_squared_error(df_pib['pib'][-len(year_prediction):], predictions)
 
 
-    year_alls = list(df_pib.index) + list(year_prediction)
+    #year_alls = list(df_pib.index) + list(year_prediction)
 
     #Visualizar las predicciones
     '''
@@ -79,15 +79,15 @@ def prediction_pib_current (start_year:int, end_year:int):
    
 
     data=[]
-
+    
 
 
     for year, prediction in zip(year_prediction, list(predictions)):
-        pib =str(prediction)
-        pibformat =  pib[:3] + '.' + pib[3:6]
+        pib = str(predictions)
+        pibformat = pib[:3] + '.' + pib[3:6]
         data.append({
             'year': year.__str__(),
-            'pib': pibformat.__str__()
+            'pib': pibformat
         })
 
     data_sort = sorted(data, key=lambda x: int(x['year']))

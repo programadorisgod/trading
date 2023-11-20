@@ -47,10 +47,10 @@ def prediction_pib_const(start_year:int, end_year:int):
     #hacer prediciones
     predictions:float = model_fit.forecast(steps=len(year_prediction))
     #Calcular  el error cuadratico medie (MSE)
-    mse = mean_squared_error(df_pib['pib'][-len(year_prediction):], predictions)
+# mse = mean_squared_error(df_pib['pib'][-len(year_prediction):], predictions)
 
 
-    year_alls = list(df_pib.index) + list(year_prediction)
+ #   year_alls = list(df_pib.index) + list(year_prediction)
 
     #Visualizar las predicciones
     '''
@@ -67,9 +67,11 @@ def prediction_pib_const(start_year:int, end_year:int):
 
    
     for year, prediction in zip(year_prediction, list(predictions)):
+        pib = str(prediction)
+        pibfomat = pib[:3] + '.' + pib[3:6]
         data.append({
             'year': year.__str__(),
-            'pib': round(prediction, 2).__str__()
+            'pib': pibfomat
         })
 
     data_sort = sorted(data, key=lambda x: int(x['year']))
